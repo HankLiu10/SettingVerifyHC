@@ -3,6 +3,7 @@ import shutil
 import time
 from datetime import datetime
 
+import argparse
 from sklearn.preprocessing import StandardScaler
 from tqdm import tqdm
 
@@ -66,14 +67,14 @@ def getXSYS(data, mode):
 
 def getModel(name):
     # way1: only adaptive graph.
-    # model = gwnet(device, num_nodes = N_NODE, in_dim=CHANNEL).to(device)
-    # return model
+    model = gwnet(device, num_nodes = N_NODE, in_dim=CHANNEL).to(device)
+    return model
 
     # way2: adjacent graph + adaptive graph
-    adj_mx = load_adj(ADJPATH, ADJTYPE)
-    supports = [torch.tensor(i).to(device) for i in adj_mx]
-    model = gwnet(device, num_nodes=N_NODE, in_dim=CHANNEL, supports=supports).to(device)
-    return model
+    # adj_mx = load_adj(ADJPATH, ADJTYPE)
+    # supports = [torch.tensor(i).to(device) for i in adj_mx]
+    # model = gwnet(device, num_nodes=N_NODE, in_dim=CHANNEL, supports=supports).to(device)
+    # return model
 
 
 def evaluateModel(model, criterion, data_iter):
