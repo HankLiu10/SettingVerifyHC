@@ -193,6 +193,7 @@ class gwnet(nn.Module):
             if self.gcn_bool and self.supports is not None:
                 if self.addaptadj:
                     x = self.gconv[i](x, new_supports)
+
                 else:
                     x = self.gconv[i](x, self.supports)
             else:
